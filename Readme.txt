@@ -8,3 +8,5 @@
 8  888888888888888
 9
  Nothing has changed
+
+https://msdn.microsoft.com/en-us/library/ff650706.aspx
