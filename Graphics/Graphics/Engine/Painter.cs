@@ -9,7 +9,7 @@ namespace Graphics.Engine
     class Painter
     {
         public int BackgroundColor { get; set; }
-        public int BrushColor { get; set; }
+        public int BrushColor { get; set; }        
 
         public Painter()
         {

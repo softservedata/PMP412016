@@ -21,19 +21,31 @@ namespace Graphics.Data
                 Matr[i, i] = 1;
             }
         }
-
+        public double this[int index_i,int index_j]
+        {
+            get
+            {
+                return Matr[index_i,index_j];            
+            }
+            set
+            {
+               Matr[index_i,index_j] = value;            
+            }
+        }
         public static Matrix operator*(Matrix left, Matrix right)
         {
            Matrix result = new Matrix();
+           double sum = 0;
            for (int i = 0; i < Vector.VECTOR_SIZE; i++)
             {
                 for (int j = 0; j < Vector.VECTOR_SIZE; j++)
                 {
-                    result.Matr[i, j] = 0;
+                    sum = 0;
                     for (int k = 0; k < Vector.VECTOR_SIZE; k++)
                     {
-                        result.Matr[i, j] = result.Matr[i, j] + left.Matr[i, k] * right.Matr[k, j];
+                        sum += left[i, k] * right[k, j];
                     }
+                    result[i, j] = sum;
                 }
             }
            return result;
@@ -44,10 +56,10 @@ namespace Graphics.Data
             Vector result = new Vector();
             for (int i = 0; i < Vector.VECTOR_SIZE; i++)
             {
-                result.Vect[i] = 0;
+                result[i] = 0;
                 for (int j = 0; j < Vector.VECTOR_SIZE; j++)
                 {
-                    result.Vect[i] = result.Vect[i] + left.Matr[i, j] * right.Vect[j];
+                    result[i] = result[i] + left[i, j] * right[j];
                 }
             }
             return result;

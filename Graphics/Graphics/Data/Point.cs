@@ -7,31 +7,42 @@ namespace Graphics.Data
 {
     class Point
     {
-        private Vector coordinates;
-
+        private Vector coordinates;        
         public Point(double x, double y, double z)
         {
             coordinates = new Vector(x, y, z);
         }
-
-        public double getX()
+        public Point(Vector vec)
         {
-            return coordinates.Vect[0] / coordinates.Vect[3];
+            coordinates = new Vector();
+            for(int i=0;i<Vector.VECTOR_SIZE;i++)
+            {
+                coordinates[i] = vec[i];
+            }
         }
- 
-        public double getY()
+        public double this[int index]
         {
-            return coordinates.Vect[1] / coordinates.Vect[3];
+            get
+            {
+                return coordinates[index] / coordinates.Vect[3];
+            }            
         }
-
-        public double getZ()
+        public double X 
         {
-            return coordinates.Vect[2] / coordinates.Vect[3].;
+            get { return coordinates.Vect[0] / coordinates.Vect[3]; }
         }
+        public double Y
+        {
+            get { return coordinates.Vect[1] / coordinates.Vect[3]; }
+        }
+        public double Z
+        {
+            get { return coordinates.Vect[2] / coordinates.Vect[3]; }
+        }       
 
         public override string ToString()
         {
-            return getX().ToString() + " " + getY().ToString() + " " + getZ().ToString();
+            return X.ToString() + " " + Y.ToString() + " " + Z.ToString();
         }
     }
 }

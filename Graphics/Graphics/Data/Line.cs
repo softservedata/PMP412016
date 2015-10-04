@@ -18,8 +18,8 @@ namespace Graphics.Data
 
         public override string ToString()
         {
-            return "Begin: " + Begin.getX().ToString() + " " + Begin.getY().ToString() + " " + Begin.getZ().ToString()
-                + "\nEnd: " + End.getX().ToString() + " " + End.getY().ToString() + " " + End.getZ().ToString();
+            return "Begin: " + Begin.X.ToString() + " " + Begin.Y.ToString() + " " + Begin.Z.ToString()
+                + "\nEnd: " + End.X.ToString() + " " + End.Y.ToString() + " " + End.Z.ToString();
         }
     }
 }

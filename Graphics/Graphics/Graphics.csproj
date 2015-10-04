@@ -49,13 +49,15 @@
     <Compile Include="Data\Polygon.cs" />
     <Compile Include="Data\Vector.cs" />
     <Compile Include="Engine\Painter.cs" />
+    <Compile Include="Engine\PerspectiveRrojection.cs" />
+    <Compile Include="Primitives\Relocator.cs" />
+    <Compile Include="Primitives\AbsoluteRotator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Rotator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />
-    <Folder Include="Primitives\" />
-    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
