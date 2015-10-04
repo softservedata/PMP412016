@@ -21,4 +21,4 @@ Cube
 Sphere
 Cylinder
 
-hoha, amigos!
+hola, amigos!
