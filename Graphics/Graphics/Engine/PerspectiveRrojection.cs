@@ -52,9 +52,10 @@ namespace Graphics.Engine
         }
         public Point GetScreenPoint(double x, double y, double w, double h, Point p) // (x,y) - coordinates of bottom-left corner of window
         {
+            // point (0,0) is in top left corner. So we need to put (-pNDC.Y) 
             Point pNDC = ProjectToNDC(p);
             double xScreen = w * pNDC.X/2.0 + x + w / 2.0;
-            double yScreen = h * pNDC.Y / 2.0 + y + h / 2.0;
+            double yScreen = h * (- pNDC.Y) / 2.0 - y + h / 2.0;
             double z = (F - N) * pNDC.Z / 2.0 + (F + N) / 2.0;
             return new Point(xScreen, yScreen, z);
         }

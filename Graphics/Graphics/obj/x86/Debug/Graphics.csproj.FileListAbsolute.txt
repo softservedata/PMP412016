@@ -1,0 +1,7 @@
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\bin\Debug\Graphics.exe
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\bin\Debug\Graphics.pdb
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.csprojResolveAssemblyReference.cache
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.exe
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.pdb
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.UI.GraphicsViewer.resources
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.csproj.GenerateResource.Cache
