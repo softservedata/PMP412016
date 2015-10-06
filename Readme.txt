@@ -1,0 +1,22 @@
+1 111111111111
+2 2222222222222222222
+3 33333333
+4  44444444444
+5 555555555555555
+6 66666666666666666666666666666666
+7   777777777777777777
+8  888888888888888
+9
+ Nothing has changed
+
+https://msdn.microsoft.com/en-us/library/ff650706.aspx
+
+Point
+Line
+Circle
+Rectangle
+Polygon
+
+Cube
+Sphere
+Cylinder
