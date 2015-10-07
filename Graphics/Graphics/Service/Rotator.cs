@@ -11,27 +11,27 @@ namespace Graphics.Service
     {
         public AbsoluteRotator AbsRot {get; private set;}
         public Point CenterPoint { get; private set; }
-        public Rotator(Point _centerPoint, double angel, Point axis)
+        public Rotator(Point _centerPoint, double angle, Point axis)
         {
             CenterPoint = new Point(_centerPoint.X, _centerPoint.Y, _centerPoint.Z);
-            AbsRot = new AbsoluteRotator(angel,axis);
+            AbsRot = new AbsoluteRotator(angle,axis);
         }
         public Point Rotate(Point p)
         {
-            p = (new Relocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(p);
-            AbsRot.Rotate(p);
-            return (new Relocator(CenterPoint)).Relocate(p);
+            p = (new PrimitiveRelocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(p);
+            p = AbsRot.Rotate(p);            
+            return (new PrimitiveRelocator(CenterPoint)).Relocate(p);
         }
         public Line Rotate(Line line)
         {
-            line = (new Relocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(line);
-            AbsRot.Rotate(line);
-            return (new Relocator(CenterPoint)).Relocate(line);
+            line = (new PrimitiveRelocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(line);
+            line = AbsRot.Rotate(line);
+            return (new PrimitiveRelocator(CenterPoint)).Relocate(line);
         }
         public Polygon Rotate(Polygon p)
         {
             p = (new Relocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(p);
-            AbsRot.Rotate(p);
+            p = AbsRot.Rotate(p);
             return (new Relocator(CenterPoint)).Relocate(p);
         }
     }

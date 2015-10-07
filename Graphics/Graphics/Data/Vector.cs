@@ -40,5 +40,33 @@ namespace Graphics.Data
                 
             }
         }
+        public static double operator *(Vector left, Vector right)
+        {
+            double result = 0;
+            for(int i = 0; i< VECTOR_SIZE-1;i++)
+            {
+                result += (left[i] / left[VECTOR_SIZE - 1]) * (right[i] / right[VECTOR_SIZE - 1]);
+            }
+            return result;
+        }
+        public double Abs()
+        {
+            double result = 0;
+            for (int i = 0; i < VECTOR_SIZE - 1; i++)
+            {
+                result += Math.Pow(Vect[i] / Vect[VECTOR_SIZE - 1],2);
+            }
+            return Math.Sqrt(result);
+        }
+        public static Vector operator^ (Vector left, Vector right)
+        {           
+            double u1 = left[0] / left[VECTOR_SIZE - 1];
+            double u2 = left[1] / left[VECTOR_SIZE - 1];
+            double u3 = left[2] / left[VECTOR_SIZE - 1];
+            double v1 = right[0] / right[VECTOR_SIZE - 1];
+            double v2 = right[1] / right[VECTOR_SIZE - 1];
+            double v3 = right[2] / right[VECTOR_SIZE - 1];
+            return new Vector(u2*v3 - u3*v2,u3*v1-u1*v3,u1*v2-u2*v1);
+        }
     }       
 }

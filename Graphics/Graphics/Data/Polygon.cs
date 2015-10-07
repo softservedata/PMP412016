@@ -7,8 +7,8 @@ namespace Graphics.Data
 {
     class Polygon
     {        
-        public List<Line> Series { get; private set; }
-        public Point Center { get; private set; }
+        virtual public List<Line> Series { get; private set; }
+        public Point Center { get; protected set; }
         public Polygon()
         {
             Series = new List<Line>();

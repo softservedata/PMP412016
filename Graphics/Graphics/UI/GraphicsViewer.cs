@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Graphics.Data;
-using Graphics.Engine;
+using Graphics.Service;
 
 namespace Graphics.UI
 {    
@@ -17,7 +17,8 @@ namespace Graphics.UI
         private SD.SolidBrush sb;
         private SD.Pen pen;
         private Polygon poligon = null;
-        private Painter painter;
+        private List<Polygon> shapes = null;
+        private Drawer drawer;
         public int BitMapWidth { get; set; }
         public int BitMapHight { get; set; }
         public int PenWidth { get; set; }
@@ -31,7 +32,9 @@ namespace Graphics.UI
             PenWidth = 2;
             PenColor = SD.Color.Black;
             BitMapBackgroundColor = panelScreen.BackColor;
-            painter = new Painter(this);
+            drawer = new Drawer();
+            drawer.ConnectTo(this);
+            shapes = new List<Polygon>();
         }        
         private void panelScreen_MouseClick(object sender, MouseEventArgs e)
         {            
@@ -57,8 +60,7 @@ namespace Graphics.UI
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            if (poligon == null) poligon = new Polygon();
+        {            
             double x1, y1, z1, x2, y2, z2;
             try
             {
@@ -74,14 +76,114 @@ namespace Graphics.UI
                 MessageBox.Show(ex.Message);
                 return;
             }
-            poligon.Add(new Line(new Point(x1, y1, z1), new Point(x2, y2, z2)));    
-            painter.DrawPolygon(poligon);
+            if (poligon == null) poligon = new Polygon(new Point(x1, y1, z1));
+            poligon.Add(new Line(new Point(x1, y1, z1), new Point(x2, y2, z2)));
+            shapes[shapes.Count-1]= poligon;
+            drawer.Clear();
+            foreach (Polygon pol in shapes)
+            {
+                drawer.DrawPolygon(poligon);
+            }            
+            textBoxX1.UseWaitCursor = false;
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
+            shapes.Clear();
             poligon = null;
-            Clear();
+            drawer.Clear();
+        }
+
+        private void GraphicsViewer_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right: { poligon = (new Rotator(poligon.Center, 10, new Point(0, 1, 0))).Rotate(poligon); break; }
+            }
+            drawer.Clear();
+            drawer.DrawPolygon(poligon);
+        }
+        private void GraphicsViewer_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right: { poligon = (new Rotator(poligon.Center, 10, new Point(0, 1, 0))).Rotate(poligon); break; }
+            }
+            drawer.Clear();
+            drawer.DrawPolygon(poligon);
+        }
+
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            for(int i=0;i < shapes.Count;i++)
+            {
+                shapes[i] = (new Rotator(shapes[i].Center, -Math.PI / 4.0, new Point(0, 0, 1))).Rotate(shapes[i]);
+            } 
+            drawer.Clear();
+            DrawAllShapes();         
+        }
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i] = (new Rotator(shapes[i].Center, Math.PI / 4.0, new Point(0, 0, 1))).Rotate(shapes[i]);
+            }
+            drawer.Clear();
+            DrawAllShapes(); 
+        }
+        private void buttonUp_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i] = (new Rotator(shapes[i].Center, - Math.PI / 4.0, new Point(0, 1, 0))).Rotate(shapes[i]);
+            }            
+            drawer.Clear();
+            DrawAllShapes();
+        }
+        private void buttonDown_Click(object sender, EventArgs e)
+        {
+           for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i] = (new Rotator(shapes[i].Center, - Math.PI / 4.0, new Point(0, 1, 0))).Rotate(shapes[i]);
+            }            
+            drawer.Clear();
+            DrawAllShapes();
+        }  
+        private void buttonCreateRhomb_Click(object sender, EventArgs e)
+        {
+            double x1, y1, z1, x2, y2, z2,nx,ny,nz,angle;
+            try
+            {
+                x1 = Convert.ToDouble(textBoxRhombX1.Text);
+                x2 = Convert.ToDouble(textBoxRhombX2.Text);
+                y1 = Convert.ToDouble(textBoxRhombY1.Text);
+                y2 = Convert.ToDouble(textBoxRhombY2.Text);
+                z1 = Convert.ToDouble(textBoxRhombZ1.Text);
+                z2 = Convert.ToDouble(textBoxRhombZ2.Text);
+                nx = Convert.ToDouble(textBoxNormalX.Text);
+                ny = Convert.ToDouble(textBoxNormalY.Text);
+                nz = Convert.ToDouble(textBoxNormalZ.Text);
+                angle = Convert.ToDouble(textBoxAngle.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }            
+            shapes.Add( new Rhomb(new Point(x1, y1, z1), new Point(x2, y2, z2), angle, new Vector(nx, ny, nz)));            
+           shapes.Add( new Circle(new Vector((x2 - x1) / 2.0, (y2 - y1) / 2.0, (z2 - z1) / 2.0).Abs() * Math.Sin(angle),
+                                 0, 0, new Point((x1 + x2) / 2.0, (y1 + y2) / 2.0, (z1 + z2) / 2.0)));
+           foreach (Polygon pol in shapes)
+           {
+               drawer.DrawPolygon(pol);
+           }    
+        }
+        private void DrawAllShapes()
+        {
+            foreach (Polygon pol in shapes)
+            {
+                drawer.DrawPolygon(pol);
+            } 
         }
     }
 }

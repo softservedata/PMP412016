@@ -12,9 +12,9 @@ namespace Graphics.Primitives
         public double Angel { get; private set; }
         public Point Axis { get; private set; }
         public Matrix RotateMatrix {get; private set;}
-        public AbsoluteRotator(double _angel, Point _axis)
+        public AbsoluteRotator(double _angle, Point _axis)
         {
-            Angel = _angel;
+            Angel = _angle;
             Axis = new Point(_axis.X,_axis.Y,_axis.Z);
             RotateMatrix = GetRotateMatrix(Angel,Axis);
         }
