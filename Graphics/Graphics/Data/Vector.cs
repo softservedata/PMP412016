@@ -32,6 +32,7 @@ namespace Graphics.Data
             return Math.Sqrt(Math.Pow((Vect[0] / Vect[3]), 2) + Math.Pow((Vect[1] / Vect[3]), 2) + Math.Pow((Vect[2] / Vect[3]), 2));
         }
 
+        // Scalar Multiply
         public static double operator *(Vector left, Vector right)
         {
             double result = 0;
@@ -42,6 +43,7 @@ namespace Graphics.Data
             return result;
         }
 
+        // Vector Multiply
         public static Vector operator ^(Vector left, Vector right)
         {
             double x1 = (left.Vect[0] / left.Vect[3]);

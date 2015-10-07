@@ -7,7 +7,7 @@ namespace Graphics.Data
 {
     class Point
     {
-        private Vector coordinates;
+        public Vector Coordinates {get; private set; }
 
         public Point(): this(0,0,0)
         {
@@ -15,22 +15,27 @@ namespace Graphics.Data
 
         public Point(double x, double y, double z)
         {
-            coordinates = new Vector(x, y, z);
+            Coordinates = new Vector(x, y, z);
+        }
+
+        public Point(Vector source)
+        {
+            Coordinates = source;
         }
 
         public double getX()
         {
-            return coordinates.Vect[0] / coordinates.Vect[3];
+            return Coordinates.Vect[0] / Coordinates.Vect[3];
         }
  
         public double getY()
         {
-            return coordinates.Vect[1] / coordinates.Vect[3];
+            return Coordinates.Vect[1] / Coordinates.Vect[3];
         }
 
         public double getZ()
         {
-            return coordinates.Vect[2] / coordinates.Vect[3].;
+            return Coordinates.Vect[2] / Coordinates.Vect[3];
         }
 
         public override string ToString()

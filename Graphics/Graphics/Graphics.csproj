@@ -56,7 +56,7 @@
     <Compile Include="Primitives\Transfer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\RotatorBLL.cs" />
+    <Compile Include="Service\RotatorPolygon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />
