@@ -7,7 +7,7 @@ namespace Graphics.Data
 {
     class Polygon
     {
-        List<Line> Series { get; private set; }
+        public List<Line> Series { get; private set; }
 
         public Polygon()
         {

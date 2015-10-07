@@ -9,6 +9,10 @@ namespace Graphics.Data
     {
         private Vector coordinates;
 
+        public Point(): this(0,0,0)
+        {
+        }
+
         public Point(double x, double y, double z)
         {
             coordinates = new Vector(x, y, z);
