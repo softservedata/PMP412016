@@ -42,5 +42,9 @@ namespace Graphics.Data
         {
             return getX().ToString() + " " + getY().ToString() + " " + getZ().ToString();
         }
+        public  Point operator -(Point left, Point right)
+        {
+            return new Point(left.getX() - right.getX(), left.getY() - right.getY(), left.getZ() - right.getZ());
+        }
     }
 }

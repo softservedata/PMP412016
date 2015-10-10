@@ -1,5 +1,0 @@
-C:\Users\Admin\Workspace\PMP412016\UserExamle\UserExamle\bin\Debug\UserExamle.exe
-C:\Users\Admin\Workspace\PMP412016\UserExamle\UserExamle\bin\Debug\UserExamle.pdb
-C:\Users\Admin\Workspace\PMP412016\UserExamle\UserExamle\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Admin\Workspace\PMP412016\UserExamle\UserExamle\obj\x86\Debug\UserExamle.exe
-C:\Users\Admin\Workspace\PMP412016\UserExamle\UserExamle\obj\x86\Debug\UserExamle.pdb

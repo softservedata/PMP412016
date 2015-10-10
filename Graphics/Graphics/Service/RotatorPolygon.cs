@@ -18,8 +18,12 @@ namespace Graphics.Service
 
         public Polygon rotate(Polygon source)
         {
-            // TODO
-            return new Polygon();
+            Polygon result = new Polygon();
+            foreach (Line l in source.Series)
+            {
+                result.add(new Line(rotator.rotate(l.Begin), rotator.rotate(l.End)));
+            }
+            return result;
         }
 
     }

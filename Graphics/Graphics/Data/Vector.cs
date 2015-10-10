@@ -26,7 +26,13 @@ namespace Graphics.Data
             Vect[2] = z;
             Vect[3] = 1;
         }
-
+        public Vector(Point source)
+        {
+            Vect[0] = source.getX();
+            Vect[1] = source.getY();
+            Vect[2] = source.getZ();
+            Vect[3] = 1;
+        }
         public double abs()
         {
             return Math.Sqrt(Math.Pow((Vect[0] / Vect[3]), 2) + Math.Pow((Vect[1] / Vect[3]), 2) + Math.Pow((Vect[2] / Vect[3]), 2));
