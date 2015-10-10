@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Graphics.Data
 {
-    class Matrix
+    public class Matrix
     {
         public double[,] Matr { get; private set; }
         

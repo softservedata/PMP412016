@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Graphics.Data
 {
-    class Line
+  public   class Line
     {
         public Point Begin { get; private set; }
         public Point End { get; private set; }

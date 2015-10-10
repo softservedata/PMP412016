@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Graphics.Data
 {
-    class Point
+   public  class Point
     {
         public Vector Coordinates {get; private set; }
 
@@ -42,7 +42,7 @@ namespace Graphics.Data
         {
             return getX().ToString() + " " + getY().ToString() + " " + getZ().ToString();
         }
-        public  Point operator -(Point left, Point right)
+        public  static Point operator -(Point left, Point right)
         {
             return new Point(left.getX() - right.getX(), left.getY() - right.getY(), left.getZ() - right.getZ());
         }

@@ -45,14 +45,14 @@ namespace Graphics.Service
                 painter.cleanLine(l);
             }
         }
-        public void putCircle(Polygon circle)
+        public void putCircle(Circle circle)
         {
             foreach (Line l in circle.Series)
             {
                 painter.drawLine(l);
             }
         }
-        public void moveCircle(Polygon oldCircle, Polygon newCircle)
+        public void moveCircle(Circle oldCircle, Circle newCircle)
         {
             foreach (Line l in oldCircle.Series)
             {
@@ -63,7 +63,7 @@ namespace Graphics.Service
                 painter.drawLine(l);
             }
         }
-        public void cleanCircle(Polygon oldCircle)
+        public void cleanCircle(Circle oldCircle)
         {
             foreach (Line l in oldCircle.Series)
             {

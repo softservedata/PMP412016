@@ -23,6 +23,11 @@ namespace Graphics.Engine
             this.BackgroundColor = BackgroundColor;
             this.BrushColor = BrushColor;
         }
+        public Painter(Graphics.Service.IViewer view):base()
+        {
+            this.view = view;
+        }
+
         public void putPoint(Point point)
         {
             // TODO. Must be engine.
@@ -37,7 +42,10 @@ namespace Graphics.Engine
             view.putPoint(newPoint);
            // Console.WriteLine("oldPoint=" + oldPoint.ToString() + " newPoint=" + newPoint.ToString());
         }
-
+        public void cleanPoint(Point oldPoint)
+        {
+            view.cleanPoint(oldPoint);
+        }
         public void drawLine(Line line)
         {
             // TODO. Must be engine.
@@ -47,6 +55,10 @@ namespace Graphics.Engine
         public void moveLine(Line oldLine, Line newLine)
         {
             view.paintLine(newLine);
+            view.cleanLine(oldLine);
+        }
+        public void cleanLine(Line oldLine)
+        {
             view.cleanLine(oldLine);
         }
     }

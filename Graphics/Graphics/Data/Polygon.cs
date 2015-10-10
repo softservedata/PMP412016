@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Graphics.Data
 {
-    class Polygon
+    public class Polygon
     {
         public List<Line> Series { get; private set; }
 

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Graphics.Service
 {
-    interface IViewer
+   public interface IViewer
     {
-        public void putPoint(Graphics.Data.Point source);
-        public void paintLine(Graphics.Data.Line source);
-        public void cleanPoint(Graphics.Data.Point source);
-        public void cleanLine(Graphics.Data.Line source);
+          void putPoint(Graphics.Data.Point source);
+         void paintLine(Graphics.Data.Line source);
+          void cleanPoint(Graphics.Data.Point source);
+          void cleanLine(Graphics.Data.Line source);
     }
 }
