@@ -10,29 +10,44 @@ namespace Graphics.Engine
     {
         public int BackgroundColor { get; set; }
         public int BrushColor { get; set; }
+        private Graphics.Service.IViewer view;
 
         public Painter()
         {
             BackgroundColor = 0;
             BrushColor = 0; // Black
         }
-
+        public Painter(Graphics.Service.IViewer view, int BackgroundColor, int BrushColor) 
+        {
+            this.view = view;
+            this.BackgroundColor = BackgroundColor;
+            this.BrushColor = BrushColor;
+        }
         public void putPoint(Point point)
         {
             // TODO. Must be engine.
-            Console.WriteLine("paintPoint=" + point.ToString());
+            view.putPoint(point);
+            //Console.WriteLine("paintPoint=" + point.ToString());
         }
 
         public void movePoint(Point oldPoint, Point newPoint)
         {
             // TODO. Must be engine.
-            Console.WriteLine("oldPoint=" + oldPoint.ToString() + " newPoint=" + newPoint.ToString());
+            view.cleanPoint(oldPoint);
+            view.putPoint(newPoint);
+           // Console.WriteLine("oldPoint=" + oldPoint.ToString() + " newPoint=" + newPoint.ToString());
         }
 
         public void drawLine(Line line)
         {
             // TODO. Must be engine.
-            Console.WriteLine("drawLine=" + line.ToString());
+            view.paintLine(line);
+            //Console.WriteLine("drawLine=" + line.ToString());
+        }
+        public void moveLine(Line oldLine, Line newLine)
+        {
+            view.paintLine(newLine);
+            view.cleanLine(oldLine);
         }
     }
 }
