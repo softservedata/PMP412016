@@ -1,0 +1,9 @@
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\bin\Debug\TriangleManipulation.exe.config
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\bin\Debug\TriangleManipulation.exe
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\bin\Debug\TriangleManipulation.pdb
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\obj\Debug\TriangleManipulation.csprojResolveAssemblyReference.cache
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\obj\Debug\TriangleManipulation.Properties.Resources.resources
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\obj\Debug\TriangleManipulation.csproj.GenerateResource.Cache
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\obj\Debug\TriangleManipulation.exe
+c:\users\iryna\documents\visual studio 2015\Projects\TriangleManipulation\TriangleManipulation\obj\Debug\TriangleManipulation.pdb
+C:\Users\Iryna\Documents\Visual Studio 2015\Projects\TriangleManipulation\TriangleManipulation\obj\Debug\TriangleManipulation.Form1.resources
