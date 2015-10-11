@@ -35,7 +35,7 @@ namespace Graphics.Primitives
             m[2, 2] = -(f + n) / (f - n);
             m[3, 3] = 0;
             m[0, 2] = (r + l) / (r - l);
-            m[1, 2] = (t + b) / (t - b);
+            m[1, 2] = (t + b) / (t + b);// -
             m[3, 2] = -1;
             m[2, 3] = -2.0 * f * n / (f - n);
             return m;
@@ -48,6 +48,7 @@ namespace Graphics.Primitives
             {
                 vec[i] = vec[i] / vec[Vector.VECTOR_SIZE - 1];
             }
+            // I will know if you copied this code T.K.=)  
             vec[2] = (F - N) * vec[2] / 2.0 + (F + N) / 2.0;
             vec[Vector.VECTOR_SIZE - 1] = 1;
             return new Point(vec);

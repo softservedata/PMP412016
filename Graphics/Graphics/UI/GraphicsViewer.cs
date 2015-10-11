@@ -24,6 +24,7 @@ namespace Graphics.UI
         public int PenWidth { get; set; }
         public SD.Color PenColor { get; set; }
         public SD.Color BitMapBackgroundColor { get; set; }
+        private double angleStep = Math.PI / 4.0;
         public GraphicsViewer()
         {
             InitializeComponent();
@@ -78,7 +79,7 @@ namespace Graphics.UI
             }
             if (poligon == null) poligon = new Polygon(new Point(x1, y1, z1));
             poligon.Add(new Line(new Point(x1, y1, z1), new Point(x2, y2, z2)));
-            shapes[shapes.Count-1]= poligon;
+            shapes.Add( poligon);
             drawer.Clear();
             foreach (Polygon pol in shapes)
             {
@@ -92,17 +93,7 @@ namespace Graphics.UI
             shapes.Clear();
             poligon = null;
             drawer.Clear();
-        }
-
-        private void GraphicsViewer_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Right: { poligon = (new Rotator(poligon.Center, 10, new Point(0, 1, 0))).Rotate(poligon); break; }
-            }
-            drawer.Clear();
-            drawer.DrawPolygon(poligon);
-        }
+        }       
         private void GraphicsViewer_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
@@ -113,39 +104,57 @@ namespace Graphics.UI
             drawer.DrawPolygon(poligon);
         }
 
-        private void buttonRight_Click(object sender, EventArgs e)
+        private void buttonZRight_Click(object sender, EventArgs e)
         {
             for(int i=0;i < shapes.Count;i++)
             {
-                shapes[i] = (new Rotator(shapes[i].Center, -Math.PI / 4.0, new Point(0, 0, 1))).Rotate(shapes[i]);
+                shapes[i] = (new Rotator(shapes[i].Center, -angleStep, new Point(0, 0, 1))).Rotate(shapes[i]);
             } 
             drawer.Clear();
             DrawAllShapes();         
         }
-        private void buttonLeft_Click(object sender, EventArgs e)
+        private void buttonZLeft_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < shapes.Count; i++)
             {
-                shapes[i] = (new Rotator(shapes[i].Center, Math.PI / 4.0, new Point(0, 0, 1))).Rotate(shapes[i]);
+                shapes[i] = (new Rotator(shapes[i].Center, angleStep, new Point(0, 0, 1))).Rotate(shapes[i]);
             }
             drawer.Clear();
             DrawAllShapes(); 
         }
-        private void buttonUp_Click(object sender, EventArgs e)
+        private void buttonYLeft_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < shapes.Count; i++)
             {
-                shapes[i] = (new Rotator(shapes[i].Center, - Math.PI / 4.0, new Point(0, 1, 0))).Rotate(shapes[i]);
+                shapes[i] = (new Rotator(shapes[i].Center, angleStep, new Point(0, 1, 0))).Rotate(shapes[i]);
             }            
             drawer.Clear();
             DrawAllShapes();
         }
-        private void buttonDown_Click(object sender, EventArgs e)
+        private void buttonYRight_Click(object sender, EventArgs e)
         {
            for (int i = 0; i < shapes.Count; i++)
             {
-                shapes[i] = (new Rotator(shapes[i].Center, - Math.PI / 4.0, new Point(0, 1, 0))).Rotate(shapes[i]);
+                shapes[i] = (new Rotator(shapes[i].Center, -angleStep, new Point(0, 1, 0))).Rotate(shapes[i]);
             }            
+            drawer.Clear();
+            DrawAllShapes();
+        }
+        private void buttonXDown_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i] = (new Rotator(shapes[i].Center, -angleStep, new Point(1, 0, 0))).Rotate(shapes[i]);
+            }
+            drawer.Clear();
+            DrawAllShapes();
+        }
+        private void buttonXUp_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i] = (new Rotator(shapes[i].Center, angleStep, new Point(1, 0, 0))).Rotate(shapes[i]);
+            }
             drawer.Clear();
             DrawAllShapes();
         }  
@@ -169,10 +178,12 @@ namespace Graphics.UI
             {
                 MessageBox.Show(ex.Message);
                 return;
-            }            
-            shapes.Add( new Rhomb(new Point(x1, y1, z1), new Point(x2, y2, z2), angle, new Vector(nx, ny, nz)));            
-           shapes.Add( new Circle(new Vector((x2 - x1) / 2.0, (y2 - y1) / 2.0, (z2 - z1) / 2.0).Abs() * Math.Sin(angle),
-                                 0, 0, new Point((x1 + x2) / 2.0, (y1 + y2) / 2.0, (z1 + z2) / 2.0)));
+            }
+            double zinith = (nx != 0)? Math.Atan(ny/nx): Math.PI/2.0;
+            double azimuth = Math.Acos(nz / Math.Sqrt(nx * nx + ny * ny + nz * nz));
+            shapes.Add(new Rhomb(new Point(x1, y1, z1), new Point(x2, y2, z2), angle, new Vector(nx, ny, nz)));            
+            shapes.Add( new Circle(new Vector((x2 - x1) / 2.0, (y2 - y1) / 2.0, (z2 - z1) / 2.0).Abs() * Math.Sin(angle),
+                                  zinith, azimuth, new Point((x1 + x2) / 2.0, (y1 + y2) / 2.0, (z1 + z2) / 2.0)));
            foreach (Polygon pol in shapes)
            {
                drawer.DrawPolygon(pol);
@@ -185,5 +196,41 @@ namespace Graphics.UI
                 drawer.DrawPolygon(pol);
             } 
         }
+        protected override void OnKeyDown(KeyEventArgs e)
+        {           
+            base.OnKeyDown(e);
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Right: buttonZRight_Click(null, null); break;
+                    case Keys.Left: buttonZLeft_Click(null, null); break;
+                    case Keys.Up: buttonXUp_Click(null, null); break;
+                    case Keys.Down: buttonXDown_Click(null, null); break;
+                }
+            }
+            if (e.Shift)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Right: buttonYRight_Click(null, null); break;
+                    case Keys.Left: buttonYLeft_Click(null, null); break;
+                }
+            }
+            
+        }
+        //protected override void OnKeyPress(KeyPressEventArgs e)
+        //{
+        //    base.OnKeyPress(e);
+        //    if (e.KeyChar == 'd')
+        //    {
+        //        for (int i = 0; i < shapes.Count; i++)
+        //        {
+        //            shapes[i] = (new Rotator(shapes[i].Center, -angleStep, new Point(0, 0, 1))).Rotate(shapes[i]);
+        //        }
+        //        drawer.Clear();
+        //        DrawAllShapes();
+        //    }
+        //}
     }
 }

@@ -9,30 +9,29 @@ namespace Graphics.Service
 {
     class Rotator
     {
-        public AbsoluteRotator AbsRot {get; private set;}
-        public Point CenterPoint { get; private set; }
+        public PrimitiveRotator AbsRot {get; private set;}
+        public Point CenterPoint { get; private set; }        
         public Rotator(Point _centerPoint, double angle, Point axis)
         {
             CenterPoint = new Point(_centerPoint.X, _centerPoint.Y, _centerPoint.Z);
-            AbsRot = new AbsoluteRotator(angle,axis);
+            AbsRot = new PrimitiveRotator(CenterPoint,angle,axis);            
         }
         public Point Rotate(Point p)
-        {
-            p = (new PrimitiveRelocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(p);
-            p = AbsRot.Rotate(p);            
-            return (new PrimitiveRelocator(CenterPoint)).Relocate(p);
+        {               
+            return AbsRot.Rotate(p);;
         }
         public Line Rotate(Line line)
-        {
-            line = (new PrimitiveRelocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(line);
-            line = AbsRot.Rotate(line);
-            return (new PrimitiveRelocator(CenterPoint)).Relocate(line);
+        {            
+            return AbsRot.Rotate(line); 
         }
         public Polygon Rotate(Polygon p)
         {
-            p = (new Relocator(new Point(-CenterPoint.X, -CenterPoint.Y, -CenterPoint.Z))).Relocate(p);
-            p = AbsRot.Rotate(p);
-            return (new Relocator(CenterPoint)).Relocate(p);
+            Polygon new_p = new Polygon(p.Center); // intialize polygon with center in (0,0,0)
+            foreach (Line line in p.Series)
+            {
+                new_p.Add(AbsRot.Rotate(line));
+            }
+            return new_p;
         }
     }
 }

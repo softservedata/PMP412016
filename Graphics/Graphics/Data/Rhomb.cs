@@ -13,9 +13,10 @@ namespace Graphics.Data
                                 (diagonBegin.Y + diagonEnd.Y) / 2.0,
                                 (diagonBegin.Z + diagonEnd.Z) / 2.0);
             base.Center = c;
-            Vector nn = new Vector(diagonEnd.X - diagonBegin.X, diagonEnd.Y - diagonBegin.Y, diagonEnd.Z - diagonBegin.Z) ^ normal;
+            Vector diagon = new Vector(diagonEnd.X - diagonBegin.X, diagonEnd.Y - diagonBegin.Y, diagonEnd.Z - diagonBegin.Z);
+            Vector nn = diagon ^ normal;
             // перевіряємо чи справді normal перпендикулярний до діагоналі
-            double scalarDob = nn * normal;
+            double scalarDob = diagon * normal;
             if (scalarDob > 1e-10) throw new ApplicationException("Normal vector to rhomb is not normal");
             //
             nn = new Vector(nn[0] / nn.Abs(), nn[1] / nn.Abs(), nn[2] / nn.Abs());

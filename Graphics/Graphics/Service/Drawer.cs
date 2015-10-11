@@ -25,8 +25,7 @@ namespace Graphics.Service
             pDrawer.DrawLine(line);
         }
         public void DrawPolygon(Polygon p)
-        {
-            //pDrawer.Clear();
+        {            
             foreach (Line line in p.Series)
             {
                 pDrawer.DrawLine(line);

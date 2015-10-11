@@ -40,6 +40,6 @@
 *.idb
 *.idb
 *.pdb
-/obj/
-/Debug/
-/bin/
+**/obj/**
+**/Debug/**
+**/bin/**

@@ -7,20 +7,21 @@ using Graphics.Data;
 namespace Graphics.Primitives
 {
     // Rotates objects only around the absolute coordinates.
-    class AbsoluteRotator
+    class PrimitiveRotator
     {
         public double Angel { get; private set; }
         public Point Axis { get; private set; }
         public Matrix RotateMatrix {get; private set;}
-        public AbsoluteRotator(double _angle, Point _axis)
+        public PrimitiveRotator(Point aroundIt,double _angle, Point _axis)
         {
             Angel = _angle;
-            Axis = new Point(_axis.X,_axis.Y,_axis.Z);
-            RotateMatrix = GetRotateMatrix(Angel,Axis);
+            Axis = new Point(_axis.X, _axis.Y, _axis.Z);
+            RotateMatrix = GetRotateMatrix(aroundIt,Angel, Axis);            
         }
-        private Matrix GetRotateMatrix(double ang, Point ax)
+        private Matrix GetRotateMatrix(Point aroundIt,double ang, Point ax)
         {            
             // initializing of rotate matrix
+            Matrix relocToZeroMatr = PrimitiveRelocator.GetRelocateMatrix(new Point(-aroundIt.X, -aroundIt.Y, -aroundIt.Z));
             Matrix m = new Matrix();
             double c = Math.Cos(ang);
             double s = Math.Sin(ang);
@@ -37,19 +38,9 @@ namespace Graphics.Primitives
             m[1, 0] = m[1, 0] + ax.Z * s;
             m[1, 2] = m[1, 2] - ax.X * s;
             m[2, 0] = m[2, 0] - ax.Y * s;
-            m[2, 1] = m[2, 1] + ax.X * s;
-            return m;
-        }
-        public Polygon Rotate(Polygon p)
-        {            
-            // transform points of poligon
-            Polygon new_p =new Polygon(); // intialize polygon with center in (0,0,0)
-            foreach (Line line in p.Series)
-            {
-                new_p.Add(Rotate(line));
-            }
-            return new_p;
-         }
+            m[2, 1] = m[2, 1] + ax.X * s;            
+            return PrimitiveRelocator.GetRelocateMatrix(aroundIt) * m * relocToZeroMatr;
+        }       
         public Point Rotate(Point p)
         {            
             Vector vec_result = RotateMatrix *( new Vector(p.X, p.Y, p.Z));

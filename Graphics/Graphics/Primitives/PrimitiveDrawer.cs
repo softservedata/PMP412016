@@ -11,7 +11,7 @@ namespace Graphics.Primitives
     {
         private Painter painter;
         private PerspectiveProjection projector;
-        private const int R = 50, L = -50, T = 50, B = -50, N = -1, F = -50;
+        private const int R = 1, L = -1, T = 1, B = -1, N = -1, F = -10;
         public PrimitiveDrawer(IView view)
         {
             projector = new PerspectiveProjection(R, L, B, T, N, F);

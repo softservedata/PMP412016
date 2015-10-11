@@ -5,3 +5,4 @@ C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics
 C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.pdb
 C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.UI.GraphicsViewer.resources
 C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.csproj.GenerateResource.Cache
+C:\Users\Тарас\Workspace\PMP412016\Graphics\Graphics\obj\x86\Debug\Graphics.Properties.Resources.resources

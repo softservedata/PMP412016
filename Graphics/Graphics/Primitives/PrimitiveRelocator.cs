@@ -16,7 +16,7 @@ namespace Graphics.Primitives
             Target = new Point(target.X, target.Y, target.Z);
             RelocateMatrix = GetRelocateMatrix(Target);
         }
-        private Matrix GetRelocateMatrix( Point targ)
+        public static Matrix GetRelocateMatrix(Point targ)
         {
             Matrix m = new Matrix();
             m[0, 3] = targ.X;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GraphicsViewer));
             this.panelScreen = new System.Windows.Forms.Panel();
             this.labelPolygon = new System.Windows.Forms.Label();
             this.textBoxX1 = new System.Windows.Forms.TextBox();
@@ -41,10 +42,10 @@
             this.textBoxY2 = new System.Windows.Forms.TextBox();
             this.textBoxZ2 = new System.Windows.Forms.TextBox();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonUp = new System.Windows.Forms.Button();
-            this.buttonDown = new System.Windows.Forms.Button();
-            this.buttonRight = new System.Windows.Forms.Button();
-            this.buttonLeft = new System.Windows.Forms.Button();
+            this.buttonYLeft = new System.Windows.Forms.Button();
+            this.buttonYRight = new System.Windows.Forms.Button();
+            this.buttonZRight = new System.Windows.Forms.Button();
+            this.buttonZLeft = new System.Windows.Forms.Button();
             this.labelRhomb = new System.Windows.Forms.Label();
             this.labelXR = new System.Windows.Forms.Label();
             this.labelYR = new System.Windows.Forms.Label();
@@ -62,14 +63,18 @@
             this.labelAngle = new System.Windows.Forms.Label();
             this.textBoxAngle = new System.Windows.Forms.TextBox();
             this.buttonCreateRhomb = new System.Windows.Forms.Button();
+            this.buttonXUp = new System.Windows.Forms.Button();
+            this.buttonXDown = new System.Windows.Forms.Button();
+            this.colorDialogPen = new System.Windows.Forms.ColorDialog();
             this.SuspendLayout();
             // 
             // panelScreen
             // 
             this.panelScreen.BackColor = System.Drawing.SystemColors.Window;
+            this.panelScreen.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelScreen.Location = new System.Drawing.Point(0, 0);
             this.panelScreen.Name = "panelScreen";
-            this.panelScreen.Size = new System.Drawing.Size(364, 364);
+            this.panelScreen.Size = new System.Drawing.Size(364, 362);
             this.panelScreen.TabIndex = 0;
             this.panelScreen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelScreen_MouseClick);
             this.panelScreen.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GraphicsViewer_PreviewKeyDown);
@@ -136,12 +141,13 @@
             // 
             // buttonAdd
             // 
+            this.buttonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.buttonAdd.Location = new System.Drawing.Point(386, 111);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(148, 23);
             this.buttonAdd.TabIndex = 7;
             this.buttonAdd.Text = "Add line";
-            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // textBoxX2
@@ -170,53 +176,62 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(471, 242);
+            this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.buttonReset.Location = new System.Drawing.Point(478, 202);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(148, 23);
             this.buttonReset.TabIndex = 8;
             this.buttonReset.Text = "Reset ";
-            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
-            // buttonUp
+            // buttonYLeft
             // 
-            this.buttonUp.Location = new System.Drawing.Point(521, 301);
-            this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(44, 23);
-            this.buttonUp.TabIndex = 11;
-            this.buttonUp.Text = "Up";
-            this.buttonUp.UseVisualStyleBackColor = true;
-            this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
+            this.buttonYLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.buttonYLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonYLeft.BackgroundImage")));
+            this.buttonYLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonYLeft.Location = new System.Drawing.Point(454, 271);
+            this.buttonYLeft.Name = "buttonYLeft";
+            this.buttonYLeft.Size = new System.Drawing.Size(44, 42);
+            this.buttonYLeft.TabIndex = 11;
+            this.buttonYLeft.UseVisualStyleBackColor = false;
+            this.buttonYLeft.Click += new System.EventHandler(this.buttonYLeft_Click);
             // 
-            // buttonDown
+            // buttonYRight
             // 
-            this.buttonDown.Location = new System.Drawing.Point(521, 330);
-            this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(44, 23);
-            this.buttonDown.TabIndex = 11;
-            this.buttonDown.Text = "Down";
-            this.buttonDown.UseVisualStyleBackColor = true;
-            this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
+            this.buttonYRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.buttonYRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonYRight.BackgroundImage")));
+            this.buttonYRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonYRight.Location = new System.Drawing.Point(454, 319);
+            this.buttonYRight.Name = "buttonYRight";
+            this.buttonYRight.Size = new System.Drawing.Size(44, 45);
+            this.buttonYRight.TabIndex = 11;
+            this.buttonYRight.UseVisualStyleBackColor = false;
+            this.buttonYRight.Click += new System.EventHandler(this.buttonYRight_Click);
             // 
-            // buttonRight
+            // buttonZRight
             // 
-            this.buttonRight.Location = new System.Drawing.Point(571, 301);
-            this.buttonRight.Name = "buttonRight";
-            this.buttonRight.Size = new System.Drawing.Size(48, 52);
-            this.buttonRight.TabIndex = 11;
-            this.buttonRight.Text = "Right";
-            this.buttonRight.UseVisualStyleBackColor = true;
-            this.buttonRight.Click += new System.EventHandler(this.buttonRight_Click);
+            this.buttonZRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.buttonZRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonZRight.BackgroundImage")));
+            this.buttonZRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonZRight.Location = new System.Drawing.Point(504, 295);
+            this.buttonZRight.Name = "buttonZRight";
+            this.buttonZRight.Size = new System.Drawing.Size(39, 42);
+            this.buttonZRight.TabIndex = 11;
+            this.buttonZRight.UseVisualStyleBackColor = false;
+            this.buttonZRight.Click += new System.EventHandler(this.buttonZRight_Click);
             // 
-            // buttonLeft
+            // buttonZLeft
             // 
-            this.buttonLeft.Location = new System.Drawing.Point(471, 301);
-            this.buttonLeft.Name = "buttonLeft";
-            this.buttonLeft.Size = new System.Drawing.Size(44, 52);
-            this.buttonLeft.TabIndex = 11;
-            this.buttonLeft.Text = "Left";
-            this.buttonLeft.UseVisualStyleBackColor = true;
-            this.buttonLeft.Click += new System.EventHandler(this.buttonLeft_Click);
+            this.buttonZLeft.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonZLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonZLeft.BackgroundImage")));
+            this.buttonZLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonZLeft.Location = new System.Drawing.Point(549, 295);
+            this.buttonZLeft.Name = "buttonZLeft";
+            this.buttonZLeft.Size = new System.Drawing.Size(42, 42);
+            this.buttonZLeft.TabIndex = 11;
+            this.buttonZLeft.UseVisualStyleBackColor = false;
+            this.buttonZLeft.Click += new System.EventHandler(this.buttonZLeft_Click);
             // 
             // labelRhomb
             // 
@@ -260,7 +275,7 @@
             this.textBoxRhombX1.Name = "textBoxRhombX1";
             this.textBoxRhombX1.Size = new System.Drawing.Size(55, 20);
             this.textBoxRhombX1.TabIndex = 1;
-            this.textBoxRhombX1.Text = "0";
+            this.textBoxRhombX1.Text = "-10";
             // 
             // textBoxRhombX2
             // 
@@ -268,7 +283,7 @@
             this.textBoxRhombX2.Name = "textBoxRhombX2";
             this.textBoxRhombX2.Size = new System.Drawing.Size(55, 20);
             this.textBoxRhombX2.TabIndex = 4;
-            this.textBoxRhombX2.Text = "50";
+            this.textBoxRhombX2.Text = "10";
             // 
             // textBoxRhombY1
             // 
@@ -276,7 +291,7 @@
             this.textBoxRhombY1.Name = "textBoxRhombY1";
             this.textBoxRhombY1.Size = new System.Drawing.Size(55, 20);
             this.textBoxRhombY1.TabIndex = 2;
-            this.textBoxRhombY1.Text = "0";
+            this.textBoxRhombY1.Text = "-10";
             // 
             // textBoxRhombY2
             // 
@@ -284,7 +299,7 @@
             this.textBoxRhombY2.Name = "textBoxRhombY2";
             this.textBoxRhombY2.Size = new System.Drawing.Size(55, 20);
             this.textBoxRhombY2.TabIndex = 5;
-            this.textBoxRhombY2.Text = "50";
+            this.textBoxRhombY2.Text = "10";
             // 
             // textBoxRhombZ1
             // 
@@ -292,7 +307,7 @@
             this.textBoxRhombZ1.Name = "textBoxRhombZ1";
             this.textBoxRhombZ1.Size = new System.Drawing.Size(55, 20);
             this.textBoxRhombZ1.TabIndex = 3;
-            this.textBoxRhombZ1.Text = "10";
+            this.textBoxRhombZ1.Text = "30";
             // 
             // textBoxRhombZ2
             // 
@@ -300,7 +315,7 @@
             this.textBoxRhombZ2.Name = "textBoxRhombZ2";
             this.textBoxRhombZ2.Size = new System.Drawing.Size(55, 20);
             this.textBoxRhombZ2.TabIndex = 6;
-            this.textBoxRhombZ2.Text = "10";
+            this.textBoxRhombZ2.Text = "30";
             // 
             // labelNormal
             // 
@@ -354,23 +369,51 @@
             // 
             // buttonCreateRhomb
             // 
+            this.buttonCreateRhomb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.buttonCreateRhomb.Location = new System.Drawing.Point(597, 173);
             this.buttonCreateRhomb.Name = "buttonCreateRhomb";
             this.buttonCreateRhomb.Size = new System.Drawing.Size(125, 23);
             this.buttonCreateRhomb.TabIndex = 7;
             this.buttonCreateRhomb.Text = "Paint rhomb";
-            this.buttonCreateRhomb.UseVisualStyleBackColor = true;
+            this.buttonCreateRhomb.UseVisualStyleBackColor = false;
             this.buttonCreateRhomb.Click += new System.EventHandler(this.buttonCreateRhomb_Click);
+            // 
+            // buttonXUp
+            // 
+            this.buttonXUp.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonXUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonXUp.BackgroundImage")));
+            this.buttonXUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonXUp.Location = new System.Drawing.Point(597, 271);
+            this.buttonXUp.Name = "buttonXUp";
+            this.buttonXUp.Size = new System.Drawing.Size(42, 42);
+            this.buttonXUp.TabIndex = 11;
+            this.buttonXUp.UseVisualStyleBackColor = false;
+            this.buttonXUp.Click += new System.EventHandler(this.buttonXUp_Click);
+            // 
+            // buttonXDown
+            // 
+            this.buttonXDown.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonXDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonXDown.BackgroundImage")));
+            this.buttonXDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonXDown.Location = new System.Drawing.Point(597, 319);
+            this.buttonXDown.Name = "buttonXDown";
+            this.buttonXDown.Size = new System.Drawing.Size(42, 42);
+            this.buttonXDown.TabIndex = 11;
+            this.buttonXDown.UseVisualStyleBackColor = false;
+            this.buttonXDown.Click += new System.EventHandler(this.buttonXDown_Click);
             // 
             // GraphicsViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 366);
-            this.Controls.Add(this.buttonLeft);
-            this.Controls.Add(this.buttonRight);
-            this.Controls.Add(this.buttonDown);
-            this.Controls.Add(this.buttonUp);
+            this.BackColor = System.Drawing.Color.LightBlue;
+            this.ClientSize = new System.Drawing.Size(742, 362);
+            this.Controls.Add(this.buttonXDown);
+            this.Controls.Add(this.buttonXUp);
+            this.Controls.Add(this.buttonZLeft);
+            this.Controls.Add(this.buttonZRight);
+            this.Controls.Add(this.buttonYRight);
+            this.Controls.Add(this.buttonYLeft);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonCreateRhomb);
             this.Controls.Add(this.buttonAdd);
@@ -401,9 +444,9 @@
             this.Controls.Add(this.labelRhomb);
             this.Controls.Add(this.labelPolygon);
             this.Controls.Add(this.panelScreen);
+            this.KeyPreview = true;
             this.Name = "GraphicsViewer";
             this.Text = "GraphicsViewer";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GraphicsViewer_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,10 +467,10 @@
         private System.Windows.Forms.TextBox textBoxY2;
         private System.Windows.Forms.TextBox textBoxZ2;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.Button buttonUp;
-        private System.Windows.Forms.Button buttonDown;
-        private System.Windows.Forms.Button buttonRight;
-        private System.Windows.Forms.Button buttonLeft;
+        private System.Windows.Forms.Button buttonYLeft;
+        private System.Windows.Forms.Button buttonYRight;
+        private System.Windows.Forms.Button buttonZRight;
+        private System.Windows.Forms.Button buttonZLeft;
         private System.Windows.Forms.Label labelRhomb;
         private System.Windows.Forms.Label labelXR;
         private System.Windows.Forms.Label labelYR;
@@ -445,5 +488,8 @@
         private System.Windows.Forms.Label labelAngle;
         private System.Windows.Forms.TextBox textBoxAngle;
         private System.Windows.Forms.Button buttonCreateRhomb;
+        private System.Windows.Forms.Button buttonXUp;
+        private System.Windows.Forms.Button buttonXDown;
+        private System.Windows.Forms.ColorDialog colorDialogPen;
     }
 }
